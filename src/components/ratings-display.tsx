@@ -1,140 +1,11 @@
 import Link from 'next/link'
-import { Star, ExternalLink } from 'lucide-react'
+import { Star, ExternalLink, Heart } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
-import { Card, CardContent } from '@/components/ui/card'
 import Image from 'next/image'
 
-interface RatingProps {
-  platform: 'shopee' | 'google'
-  rating: number
-  reviewCount: number
-  link: string
-}
-
-function StarRating({ rating, size = 'sm' }: { rating: number; size?: 'sm' | 'md' }) {
-  const stars = []
-  const fullStars = Math.floor(rating)
-  const hasHalfStar = rating % 1 !== 0
-  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0)
-
-  const starSize = size === 'md' ? 'h-4 w-4' : 'h-3 w-3'
-
-  // Full stars
-  for (let i = 0; i < fullStars; i++) {
-    stars.push(
-      <Star key={`full-${i}`} className={`${starSize} fill-yellow-400 text-yellow-400`} />
-    )
-  }
-
-  // Half star
-  if (hasHalfStar) {
-    stars.push(
-      <div key="half" className="relative">
-        <Star className={`${starSize} text-gray-300`} />
-        <div className="absolute inset-0 overflow-hidden w-1/2">
-          <Star className={`${starSize} fill-yellow-400 text-yellow-400`} />
-        </div>
-      </div>
-    )
-  }
-
-  // Empty stars
-  for (let i = 0; i < emptyStars; i++) {
-    stars.push(
-      <Star key={`empty-${i}`} className={`${starSize} text-gray-300`} />
-    )
-  }
-
-  return <div className="flex items-center gap-0.5">{stars}</div>
-}
-
-function RatingCard({ platform, rating, reviewCount, link }: RatingProps) {
-  const platformConfig = {
-    shopee: {
-      name: 'Shopee',
-      color: 'bg-orange-500',
-      textColor: 'text-orange-600',
-      logo: '/images/shopee.png'
-    },
-    google: {
-      name: 'Google',
-      color: 'bg-blue-500',
-      textColor: 'text-blue-600',
-      logo: null
-    }
-  }
-
-  const config = platformConfig[platform]
-
-  return (
-    <Link
-      href={link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block transition-transform hover:scale-105"
-    >
-      <Card className="hover:shadow-md transition-shadow cursor-pointer border border-border/50">
-        <CardContent className="p-4">
-          <div className="flex items-center gap-3">
-            {/* Platform Logo/Icon */}
-            <div className={`p-2 rounded-lg ${config.color} flex-shrink-0`}>
-              {config.logo ? (
-                <Image
-                  src={config.logo}
-                  alt={config.name}
-                  width={20}
-                  height={20}
-                  className="object-contain brightness-0 invert"
-                />
-              ) : (
-                <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-xs font-bold text-blue-500">G</span>
-                </div>
-              )}
-            </div>
-
-            {/* Rating Info */}
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="font-medium text-foreground text-sm">{config.name}</span>
-                <ExternalLink className="h-3 w-3 text-muted-foreground" />
-              </div>
-
-              <div className="flex items-center gap-2">
-                <StarRating rating={rating} size="sm" />
-                <span className="font-semibold text-sm">{rating.toFixed(1)}</span>
-              </div>
-
-              <p className="text-xs text-muted-foreground mt-1">
-                {reviewCount.toLocaleString()} reviews
-              </p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    </Link>
-  )
-}
-
 export function RatingsDisplay() {
-  // These would typically come from an API or configuration
-  const ratings = [
-    {
-      platform: 'shopee' as const,
-      rating: 4.8,
-      reviewCount: 1247,
-      link: 'https://shopee.co.id/gitarbalireal' // Replace with actual Shopee store link
-    },
-    {
-      platform: 'google' as const,
-      rating: 4.9,
-      reviewCount: 189,
-      link: 'https://maps.google.com/maps?q=Jalan+padma+134+penatih+denpasar+timur' // Replace with actual Google Business link
-    }
-  ]
-
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div className="text-center">
         <h3 className="text-lg font-semibold text-foreground mb-2">Customer Reviews</h3>
         <p className="text-sm text-muted-foreground">
@@ -142,26 +13,113 @@ export function RatingsDisplay() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {ratings.map((rating) => (
-          <RatingCard key={rating.platform} {...rating} />
-        ))}
+      {/* Shopee Store Embed */}
+      <div className="space-y-4">
+        <div className="text-center">
+          <Link
+            href="https://shopee.co.id/gitarbalireal"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-colors"
+          >
+            <Image
+              src="/images/shopee.png"
+              alt="Shopee"
+              width={20}
+              height={20}
+              className="object-contain brightness-0 invert"
+            />
+            Visit Our Shopee Store
+            <ExternalLink className="h-4 w-4" />
+          </Link>
+        </div>
+
+        {/* Shopee Store Preview Frame */}
+        <div className="border border-border rounded-lg overflow-hidden bg-background">
+          <div className="p-3 bg-muted/50 border-b border-border flex items-center gap-2">
+            <Image
+              src="/images/shopee.png"
+              alt="Shopee"
+              width={16}
+              height={16}
+              className="object-contain"
+            />
+            <span className="text-sm font-medium">Shopee Store - GitarBaliReal</span>
+          </div>
+          <div className="h-48 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 flex items-center justify-center">
+            <div className="text-center space-y-2">
+              <Image
+                src="/images/shopee.png"
+                alt="Shopee"
+                width={32}
+                height={32}
+                className="object-contain mx-auto opacity-60"
+              />
+              <p className="text-sm text-muted-foreground">Live Store Ratings</p>
+              <p className="text-xs text-muted-foreground">Click button above to view real ratings</p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Overall Rating Summary */}
-      <div className="text-center p-4 bg-muted/30 rounded-lg">
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <StarRating rating={4.85} size="md" />
-          <span className="text-lg font-bold">4.9</span>
-          <span className="text-sm text-muted-foreground">overall</span>
+      {/* Google Business Embed */}
+      <div className="space-y-4">
+        <div className="text-center">
+          <Link
+            href="https://maps.google.com/maps?q=Jalan+padma+134+penatih+denpasar+timur+gitar+bali"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
+          >
+            <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center">
+              <span className="text-xs font-bold text-blue-500">G</span>
+            </div>
+            View Google Reviews
+            <ExternalLink className="h-4 w-4" />
+          </Link>
         </div>
-        <p className="text-xs text-muted-foreground">
-          Based on {(1247 + 189).toLocaleString()} total reviews
-        </p>
-        <Badge variant="outline" className="mt-2 text-xs">
+
+        {/* Google Maps Embed */}
+        <div className="border border-border rounded-lg overflow-hidden">
+          <div className="p-3 bg-muted/50 border-b border-border flex items-center gap-2">
+            <div className="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
+              <span className="text-xs font-bold text-white">G</span>
+            </div>
+            <span className="text-sm font-medium">Google Maps - Gitar Bali Workshop</span>
+          </div>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.2!2d115.2!3d-8.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwNDInMDAuMCJTIDExNcKwMTInMDAuMCJF!5e0!3m2!1sen!2sid!4v1"
+            width="100%"
+            height="200"
+            style={{ border: 0 }}
+            allowFullScreen={true}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Gitar Bali Workshop Location"
+            className="w-full"
+          />
+        </div>
+      </div>
+
+      {/* Call to Action for Reviews */}
+      <div className="text-center p-4 bg-muted/30 rounded-lg">
+        <Badge variant="outline" className="mb-3">
           <Star className="h-3 w-3 mr-1 fill-yellow-400 text-yellow-400" />
-          Highly Rated
+          Customer Verified
         </Badge>
+        <p className="text-sm text-muted-foreground mb-3">
+          Check our live ratings and customer reviews on Shopee and Google
+        </p>
+        <div className="flex flex-wrap justify-center gap-2">
+          <Badge variant="outline" className="text-xs">
+            <Heart className="h-3 w-3 mr-1" />
+            Real Reviews
+          </Badge>
+          <Badge variant="outline" className="text-xs">
+            <Star className="h-3 w-3 mr-1" />
+            Verified Purchases
+          </Badge>
+        </div>
       </div>
     </div>
   )
