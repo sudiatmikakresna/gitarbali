@@ -70,6 +70,8 @@ export interface Config {
     users: User;
     media: Media;
     'guitar-posts': GuitarPost;
+    brands: Brand;
+    types: Type;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,6 +81,8 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'guitar-posts': GuitarPostsSelect<false> | GuitarPostsSelect<true>;
+    brands: BrandsSelect<false> | BrandsSelect<true>;
+    types: TypesSelect<false> | TypesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -165,11 +169,43 @@ export interface Media {
 export interface GuitarPost {
   id: string;
   title: string;
+  brand: string | Brand;
+  type: string | Type;
   description: string;
-  thumbnailUrl: string;
+  price: number;
+  imageUrls?:
+    | {
+        url: string;
+        alt?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  youtubeVideoUrl?: string | null;
   tokopediaLink?: string | null;
   shopeeLink?: string | null;
   tiktokLink?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "brands".
+ */
+export interface Brand {
+  id: string;
+  name: string;
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "types".
+ */
+export interface Type {
+  id: string;
+  name: string;
+  description?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -191,6 +227,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'guitar-posts';
         value: string | GuitarPost;
+      } | null)
+    | ({
+        relationTo: 'brands';
+        value: string | Brand;
+      } | null)
+    | ({
+        relationTo: 'types';
+        value: string | Type;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -280,11 +324,41 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface GuitarPostsSelect<T extends boolean = true> {
   title?: T;
+  brand?: T;
+  type?: T;
   description?: T;
-  thumbnailUrl?: T;
+  price?: T;
+  imageUrls?:
+    | T
+    | {
+        url?: T;
+        alt?: T;
+        id?: T;
+      };
+  youtubeVideoUrl?: T;
   tokopediaLink?: T;
   shopeeLink?: T;
   tiktokLink?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "brands_select".
+ */
+export interface BrandsSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "types_select".
+ */
+export interface TypesSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
 }

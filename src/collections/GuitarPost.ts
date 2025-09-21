@@ -15,15 +15,63 @@ export const GuitarPost: CollectionConfig = {
       required: true,
     },
     {
+      name: 'brand',
+      type: 'relationship',
+      relationTo: 'brands',
+      required: true,
+      label: 'Brand',
+    },
+    {
+      name: 'type',
+      type: 'relationship',
+      relationTo: 'types',
+      required: true,
+      label: 'Guitar Type',
+    },
+    {
       name: 'description',
       type: 'textarea',
       required: true,
+      label: 'Specifications',
     },
     {
-      name: 'thumbnailUrl',
-      type: 'text',
+      name: 'price',
+      type: 'number',
       required: true,
-      label: 'Thumbnail URL',
+      label: 'Price (IDR)',
+      min: 0,
+    },
+    {
+      name: 'imageUrls',
+      type: 'array',
+      label: 'Image URLs',
+      minRows: 1,
+      maxRows: 10,
+      fields: [
+        {
+          name: 'url',
+          type: 'text',
+          required: true,
+          label: 'Image URL',
+        },
+        {
+          name: 'alt',
+          type: 'text',
+          required: false,
+          label: 'Alt Text',
+        },
+      ],
+    },
+    {
+      name: 'youtubeVideoUrl',
+      type: 'text',
+      required: false,
+      label: 'YouTube Video URL',
+      validate: (value: string | null | undefined) => {
+        if (!value) return true;
+        const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)[a-zA-Z0-9_-]{11}/;
+        return youtubeRegex.test(value) || 'Please enter a valid YouTube URL';
+      },
     },
     {
       name: 'tokopediaLink',

@@ -21,20 +21,11 @@ export function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link
-              href="/"
+              href="/contact"
               className="text-foreground hover:text-primary transition-colors"
             >
-              Home
+              Contact
             </Link>
-            <Link
-              href="/guitars"
-              className="text-foreground hover:text-primary transition-colors"
-            >
-              Guitars
-            </Link>
-            <Button asChild>
-              <Link href="/admin">Admin</Link>
-            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -54,25 +45,11 @@ export function Navbar() {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <Link
-                href="/"
+                href="/contact"
                 className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Home
-              </Link>
-              <Link
-                href="/guitars"
-                className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Guitars
-              </Link>
-              <Link
-                href="/admin"
-                className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Admin
+                Contact
               </Link>
             </div>
           </div>
