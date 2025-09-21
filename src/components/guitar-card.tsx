@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge'
 import { useState } from 'react'
 import { TikTokIcon } from '@/components/icons/platform-icons'
 import Image from 'next/image'
+import { ShareButton } from '@/components/share-button'
 
 interface ImageUrl {
   url: string
@@ -230,40 +231,54 @@ export function GuitarCard({ guitar }: GuitarCardProps) {
       </CardHeader>
 
 
-      <CardFooter className="flex flex-wrap gap-2">
-        {guitar.tokopediaLink && (
-          <Button variant="outline" size="sm" asChild className="w-10 h-10 p-1 hover:bg-gray-50">
-            <Link href={guitar.tokopediaLink} target="_blank" rel="noopener noreferrer" title="Tokopedia">
-              <Image
-                src="/images/tokped.png"
-                alt="Tokopedia"
-                width={24}
-                height={24}
-                className="object-contain"
-              />
-            </Link>
-          </Button>
-        )}
-        {guitar.shopeeLink && (
-          <Button variant="outline" size="sm" asChild className="w-10 h-10 p-1 hover:bg-gray-50">
-            <Link href={guitar.shopeeLink} target="_blank" rel="noopener noreferrer" title="Shopee">
-              <Image
-                src="/images/shopee.png"
-                alt="Shopee"
-                width={24}
-                height={24}
-                className="object-contain"
-              />
-            </Link>
-          </Button>
-        )}
-        {guitar.tiktokLink && (
-          <Button variant="outline" size="sm" asChild className="w-10 h-10 p-0 text-black hover:text-gray-800 hover:bg-gray-50">
-            <Link href={guitar.tiktokLink} target="_blank" rel="noopener noreferrer" title="TikTok">
-              <TikTokIcon className="h-5 w-5" />
-            </Link>
-          </Button>
-        )}
+      <CardFooter className="flex flex-col gap-3 pt-4">
+        {/* Shopping Links */}
+        <div className="flex flex-wrap gap-2 justify-center">
+          {guitar.tokopediaLink && (
+            <Button variant="outline" size="sm" asChild className="w-10 h-10 p-1 hover:bg-gray-50">
+              <Link href={guitar.tokopediaLink} target="_blank" rel="noopener noreferrer" title="Tokopedia">
+                <Image
+                  src="/images/tokped.png"
+                  alt="Tokopedia"
+                  width={24}
+                  height={24}
+                  className="object-contain"
+                />
+              </Link>
+            </Button>
+          )}
+          {guitar.shopeeLink && (
+            <Button variant="outline" size="sm" asChild className="w-10 h-10 p-1 hover:bg-gray-50">
+              <Link href={guitar.shopeeLink} target="_blank" rel="noopener noreferrer" title="Shopee">
+                <Image
+                  src="/images/shopee.png"
+                  alt="Shopee"
+                  width={24}
+                  height={24}
+                  className="object-contain"
+                />
+              </Link>
+            </Button>
+          )}
+          {guitar.tiktokLink && (
+            <Button variant="outline" size="sm" asChild className="w-10 h-10 p-0 text-black hover:text-gray-800 hover:bg-gray-50">
+              <Link href={guitar.tiktokLink} target="_blank" rel="noopener noreferrer" title="TikTok">
+                <TikTokIcon className="h-5 w-5" />
+              </Link>
+            </Button>
+          )}
+        </div>
+
+        {/* Share Button - Sticky at bottom */}
+        <div className="sticky bottom-0 bg-background/95 backdrop-blur-sm pt-2 -mx-6 -mb-6 px-6 pb-6 border-t border-border/50">
+          <ShareButton
+            title={guitar.title}
+            description={guitar.description}
+            price={guitar.price}
+            guitarId={guitar.id}
+            imageUrl={guitar.imageUrls?.[0]?.url}
+          />
+        </div>
       </CardFooter>
     </Card>
   )
