@@ -68,7 +68,7 @@ export function RatingsDisplay() {
         <div className="space-y-4">
           <div className="text-center">
             <Link
-              href="https://maps.google.com/maps?q=Jalan+padma+134+penatih+denpasar+timur+gitar+bali"
+              href="https://maps.app.goo.gl/5vAiMYVR1AAbon3x6"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors w-full sm:w-auto justify-center"
