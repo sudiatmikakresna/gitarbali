@@ -10,7 +10,7 @@ export function Footer() {
     { name: 'Home', href: '/' },
     { name: 'Guitar Collection', href: '/' },
     { name: 'Contact Us', href: '/contact' },
-    { name: 'About Us', href: '#' },
+    { name: 'About Us', href: '/about' },
   ]
 
   const socialLinks = [
