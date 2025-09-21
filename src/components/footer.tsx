@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Mail, Phone, MapPin, Instagram, Facebook, MessageCircle, Music, Heart } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { TikTokIcon } from '@/components/icons/platform-icons'
+import { RatingsDisplay } from '@/components/ratings-display'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -114,6 +115,13 @@ export function Footer() {
                   </li>
                 ))}
               </ul>
+            </div>
+          </div>
+
+          {/* Customer Ratings Section */}
+          <div className="mt-12 pt-8 border-t border-border">
+            <div className="max-w-md mx-auto">
+              <RatingsDisplay />
             </div>
           </div>
         </div>
