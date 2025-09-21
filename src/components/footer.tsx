@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Mail, Phone, MapPin, Instagram, Facebook, MessageCircle, Music, Heart } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
+import { TikTokIcon } from '@/components/icons/platform-icons'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -30,6 +31,12 @@ export function Footer() {
       href: '#',
       icon: MessageCircle,
       color: 'hover:text-green-500'
+    },
+    {
+      name: 'TikTok',
+      href: '#',
+      icon: TikTokIcon,
+      color: 'hover:text-black'
     }
   ]
 
@@ -61,11 +68,11 @@ export function Footer() {
               <div className="space-y-3">
                 <div className="flex items-center gap-3 text-sm">
                   <MapPin className="h-4 w-4 text-primary flex-shrink-0" />
-                  <span className="text-muted-foreground">Ubud, Bali, Indonesia</span>
+                  <span className="text-muted-foreground">Jalan padma 134 penatih denpasar timur</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
                   <Phone className="h-4 w-4 text-primary flex-shrink-0" />
-                  <span className="text-muted-foreground">+62 812-3456-7890</span>
+                  <span className="text-muted-foreground">+62 851‑4291‑0341</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
                   <Mail className="h-4 w-4 text-primary flex-shrink-0" />
@@ -159,7 +166,7 @@ export function Footer() {
               </Badge>
             </div>
             <p className="text-center text-xs text-muted-foreground mt-3">
-              Every guitar is crafted with precision and care by skilled artisans in Ubud, Bali
+              Every guitar is crafted with precision and care by skilled artisans in Denpasar, Bali
             </p>
           </div>
         </div>

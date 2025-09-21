@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Mail, Phone, MapPin, Clock, Instagram, Facebook, MessageCircle } from 'lucide-react'
+import { TikTokIcon } from '@/components/icons/platform-icons'
 
 export default function ContactPage() {
 
@@ -8,7 +9,7 @@ export default function ContactPage() {
     {
       icon: Phone,
       title: 'Phone',
-      content: '+62 812-3456-7890',
+      content: '+62 851‑4291‑0341',
       description: 'Call us for immediate assistance'
     },
     {
@@ -20,7 +21,7 @@ export default function ContactPage() {
     {
       icon: MapPin,
       title: 'Location',
-      content: 'Ubud, Bali, Indonesia',
+      content: 'Jalan padma 134 penatih denpasar timur',
       description: 'Visit our guitar workshop'
     },
     {
@@ -47,8 +48,14 @@ export default function ContactPage() {
     {
       icon: MessageCircle,
       name: 'WhatsApp',
-      handle: '+62 812-3456-7890',
+      handle: '+62 851‑4291‑0341',
       color: 'bg-green-500'
+    },
+    {
+      icon: TikTokIcon,
+      name: 'TikTok',
+      handle: '@Gitarbalireal',
+      color: 'bg-black'
     }
   ]
 
@@ -129,12 +136,12 @@ export default function ContactPage() {
                 Visit Our Workshop
               </CardTitle>
               <CardDescription>
-                Located in the heart of Ubud, Bali. See our craftsmen at work and try our guitars in person.
+                Located in Denpasar Timur, Bali. See our craftsmen at work and try our guitars in person.
               </CardDescription>
               <div className="flex justify-center gap-4 mt-4">
                 <Badge variant="outline">
                   <MapPin className="h-3 w-3 mr-1" />
-                  Ubud, Bali
+                  Denpasar Timur, Bali
                 </Badge>
                 <Badge variant="outline">
                   <Clock className="h-3 w-3 mr-1" />
