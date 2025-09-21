@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { Mail, Phone, MapPin, Clock, Instagram, Facebook, MessageCircle } from 'lucide-react'
 import { TikTokIcon } from '@/components/icons/platform-icons'
+import Link from 'next/link'
 
 export default function ContactPage() {
 
@@ -37,24 +38,28 @@ export default function ContactPage() {
       icon: Instagram,
       name: 'Instagram',
       handle: '@gitarbali',
+      href: 'https://instagram.com/gitarbali',
       color: 'bg-gradient-to-r from-purple-500 to-pink-500'
     },
     {
       icon: Facebook,
       name: 'Facebook',
       handle: 'Gitar Bali',
+      href: 'https://facebook.com/GitarBali',
       color: 'bg-blue-600'
     },
     {
       icon: MessageCircle,
       name: 'WhatsApp',
       handle: '+62 851‑4291‑0341',
+      href: 'https://wa.me/6285142910341',
       color: 'bg-green-500'
     },
     {
       icon: TikTokIcon,
       name: 'TikTok',
       handle: '@Gitarbalireal',
+      href: 'https://tiktok.com/@Gitarbalireal',
       color: 'bg-black'
     }
   ]
@@ -111,7 +116,7 @@ export default function ContactPage() {
               <CardContent>
                 <div className="space-y-3">
                   {socialLinks.map((social, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors cursor-pointer">
+                    <Link key={index} href={social.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors cursor-pointer">
                       <div className={`p-2 rounded-lg ${social.color}`}>
                         <social.icon className="h-4 w-4 text-white" />
                       </div>
@@ -119,7 +124,7 @@ export default function ContactPage() {
                         <p className="font-medium text-foreground">{social.name}</p>
                         <p className="text-sm text-muted-foreground">{social.handle}</p>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </CardContent>

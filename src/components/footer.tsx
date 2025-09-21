@@ -16,25 +16,25 @@ export function Footer() {
   const socialLinks = [
     {
       name: 'Instagram',
-      href: '#',
+      href: 'https://instagram.com/gitarbali',
       icon: Instagram,
       color: 'hover:text-pink-500'
     },
     {
       name: 'Facebook',
-      href: '#',
+      href: 'https://facebook.com/GitarBali',
       icon: Facebook,
       color: 'hover:text-blue-600'
     },
     {
       name: 'WhatsApp',
-      href: '#',
+      href: 'https://wa.me/6285142910341',
       icon: MessageCircle,
       color: 'hover:text-green-500'
     },
     {
       name: 'TikTok',
-      href: '#',
+      href: 'https://tiktok.com/@Gitarbalireal',
       icon: TikTokIcon,
       color: 'hover:text-black'
     }
